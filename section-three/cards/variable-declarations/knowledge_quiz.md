@@ -1,4 +1,4 @@
-# Knowledge Quiz for Section 3
+# Knowledge Quiz for Section 3 - Variable Declarations
 
 #### Q1: Is the following a valid way of initializing and assigning a value to a variable?
 ```go
