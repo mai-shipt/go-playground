@@ -30,3 +30,11 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+// deal() create a 'hand' of cards
+// Go supports multiple return types with '(deck, deck)' syntax
+func deal(d deck, handSize int) (deck, deck) {
+	// first: return everything up to, not including, handSize
+	// second: return everything after handSize, including
+	return d[:handSize], d[handSize:]
+}
