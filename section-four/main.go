@@ -10,16 +10,16 @@ type contactInfo struct {
 // Define a struct
 // This is a custom type called 'person' with these fields/properties
 type person struct {
-	firstName string
-	lastName  string
-	contact   contactInfo
+	firstName   string
+	lastName    string
+	contactInfo // Anonymous field used as or "promoted" as field name too
 }
 
 func main() {
 	mai := person{
 		firstName: "Mai",
 		lastName:  "Thao",
-		contact: contactInfo{
+		contactInfo: contactInfo{
 			email:   "maithao@demo.com",
 			zipCode: 12345,
 		},
