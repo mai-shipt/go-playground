@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Type of 'deck' has all features of a slice of strings
@@ -71,10 +72,15 @@ func newDeckFromFile(filename string) deck {
 
 // shuffle() shuffles all the cards and randomize the order in a deck
 func (d deck) shuffle() {
-	for i := range d {
-		newPos := rand.Intn(len(d) - 1)
+	// Use 'time.Now().UnixNano()' to generate a new int64 number everytime program starts
+	// Then use that as a seed to generate a new Source object
+	source := rand.NewSource(time.Now().UnixNano())
 
-		// Swap positions
+	// Use the Source object as basis for a new random number generator
+	r := rand.New(source)
+
+	for i := range d {
+		newPos := r.Intn(len(d) - 1)
 		d[i], d[newPos] = d[newPos], d[i]
 	}
 }
