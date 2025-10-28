@@ -24,9 +24,24 @@ func main() {
 			zipCode: 12345,
 		},
 	}
-	fmt.Printf("%+v\n", mai)
+
+	mai.print()
+	mai.updateName("Mayo")
+	mai.print()
 }
 
+// print() prints the person's information to standard out
+// This function is tied to the person struct by using a value receiver
+func (p person) print() {
+	fmt.Printf("%+v\n", p)
+}
+
+// updateName() SHOULD change the given person's first name, but why is it not? Fix TBD
+func (p person) updateName(newFirstName string) {
+	p.firstName = newFirstName
+}
+
+// Leaving this original 'main' commented out for posterity with notes
 //func main() {
 //	// Declare a struct
 //	// Create a new person with these values
