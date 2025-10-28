@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strings"
 )
 
@@ -52,5 +52,5 @@ func (d deck) toString() string {
 // saveToFile() saves deck to local hard drive
 func (d deck) saveToFile(filename string) error {
 	// 0666 permission to let anyone read/write this file
-	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+	return os.WriteFile(filename, []byte(d.toString()), 0666)
 }
