@@ -54,3 +54,16 @@ func (d deck) saveToFile(filename string) error {
 	// 0666 permission to let anyone read/write this file
 	return os.WriteFile(filename, []byte(d.toString()), 0666)
 }
+
+// newDeckFromFile() reads a deck from local hard drive
+func newDeckFromFile(filename string) deck {
+	bs, err := os.ReadFile(filename)
+	if err != nil {
+		// Option 1: log the error and return a call to newDeck()
+		// Option 2: log the error and quit the program entirely
+		fmt.Println("Error reading file:", err)
+		os.Exit(1)
+	}
+	s := strings.Split(string(bs), ",")
+	return deck(s)
+}
