@@ -1,0 +1,25 @@
+package main
+
+import "fmt"
+
+// Define a struct
+// This is a custom type called 'person' with these fields/properties
+type person struct {
+	firstName string
+	lastName  string
+}
+
+func main() {
+	// Declare a struct
+	// Create a new person with these values
+	mai := person{firstName: "Mai", lastName: "Thao"}
+	fmt.Println(mai)
+
+	// Another way to declare a struct
+	var alex person
+	fmt.Println(alex)
+	fmt.Printf("%+v", alex) // Print all different field names and values
+	alex.firstName = "Alex"
+	alex.lastName = "Anderson"
+	fmt.Printf("%+v", alex)
+}
