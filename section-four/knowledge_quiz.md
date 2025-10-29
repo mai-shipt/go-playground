@@ -139,3 +139,58 @@ func main() {
 }
 ```
 It prints out "Bill". Even though the expression `*&name` uses both operators, they "cancel out", returning the original value. The leftmost operator `*` is applied last so the pointer is dereferenced back to the value.
+
+# Knowledge Quiz for Section 4 - Value & Reference Types
+
+#### Q1: When we create a slice, Go will automatically create which two data structures?
+An array and a structure called "slice descriptor" that records the length of the slice, the capacity of the slice, and a pointer to the actual underlying array.
+
+#### Q2: In the following code snippet, when we pass mySlice to the updateSlice function, is the mySlice value being copied before being passed into the function?
+```go
+package main
+
+import "fmt"
+
+func main() {
+	mySlice := []string{"Hi", "There", "how", "are", "you?"}
+
+	updateSlice(mySlice)
+
+	fmt.Println(mySlice)
+}
+
+func updateSlice(s []string) {
+	s[0] = "Bye"
+}
+```
+Yes, the slice descriptor (the length, capacity, and pointer to the underlying array) are copied, but the original underlying array remains unchanged.
+
+#### Q3: With 'value types' in Go, do we have to worry about pointers if we want to pass a value to a function and modify the original value inside the function?
+Yes, because those value values (e.g. integer, float, string, bool, struct) are copied and the original value is unchanged.
+
+#### Q4: With 'reference types' in Go, do we have to worry about pointers if we want to pass a value to a function and modify the original value inside the function?
+No, because those reference types (e.g. slices, maps, channels, pointers, functions) directly modifies the original value, so there's no need for pointers.
+
+#### Q5: Is a slice a 'value type' or a 'reference type'
+A reference type because a slice contains a reference to the actual underlying list of records.
+
+#### Q6: Here's a tough one. We've been discussing about how to use pointers to avoid passing something to a function by value.  So instead of passing a value to a function, we pass a pointer to that value.  But we've also said many times that Go is a "pass by value" language, which *always* copies arguments that are passed to a function. Take a glance at the following code snippet, which gets a pointer to name called namePointer and prints out the memory address of the pointer itself! Then in the function, we take the pointer that was passed as an argument and print out the address of that pointer too. Do you think the memory address printed by both Println calls will be the same? Why or why not?
+```go
+package main
+
+import "fmt"
+
+func main() {
+	name := "bill"
+
+	namePointer := &name
+
+	fmt.Println(&namePointer)
+	printPointer(namePointer)
+}
+
+func printPointer(namePointer *string) {
+	fmt.Println(&namePointer)
+}
+```
+The log statements will print different addresses because *everything* in Go is pass by value, so when a pointer is passed to a function, a copy is made. But, it is still pointing to the same memory address so changes affect the same underlying value.
