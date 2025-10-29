@@ -25,8 +25,10 @@ func main() {
 		},
 	}
 
+	// '&' is an operator that gives the memory address of the value this variable is pointing at
+	maiPointer := &mai
 	mai.print()
-	mai.updateName("Mayo")
+	maiPointer.updateName("Mayo")
 	mai.print()
 }
 
@@ -37,8 +39,10 @@ func (p person) print() {
 }
 
 // updateName() SHOULD change the given person's first name, but why is it not? Fix TBD
-func (p person) updateName(newFirstName string) {
-	p.firstName = newFirstName
+// '*person' is a type description - we're working with a pointer to a person struct aka gives the value this memory address is pointing at
+// '*p' is an operator - we want to manipulate the value the pointer is referencing
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
 }
 
 // Leaving this original 'main' commented out for posterity with notes
