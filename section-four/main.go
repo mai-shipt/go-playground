@@ -25,10 +25,10 @@ func main() {
 		},
 	}
 
-	// '&' is an operator that gives the memory address of the value this variable is pointing at
-	maiPointer := &mai
+	// Don't need to get memory addr and can use pointer shortcut where Go
+	// auto-turn variable into a pointer since fxn receiver is a pointer ref
 	mai.print()
-	maiPointer.updateName("Mayo")
+	mai.updateName("Mayo")
 	mai.print()
 }
 
@@ -39,7 +39,8 @@ func (p person) print() {
 }
 
 // updateName() SHOULD change the given person's first name, but why is it not? Fix TBD
-// '*person' is a type description - we're working with a pointer to a person struct aka gives the value this memory address is pointing at
+// '*person' is a type description - we're working with a pointer to a person struct aka
+//	gives the value this memory address is pointing at
 // '*p' is an operator - we want to manipulate the value the pointer is referencing
 func (p *person) updateName(newFirstName string) {
 	(*p).firstName = newFirstName
