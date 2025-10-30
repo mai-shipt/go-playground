@@ -15,5 +15,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Print(resp)
+	// Create an empty byte slice with spaces for 99,999 elements
+	bs := make([]byte, 99999)
+	// Now we can read the actual doctype HTML response
+	resp.Body.Read(bs)
+	fmt.Println(string(bs))
 }
