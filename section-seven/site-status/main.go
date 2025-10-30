@@ -17,11 +17,12 @@ func main() {
 	c := make(chan string)
 
 	for _, link := range links {
-		// This will execute, but only first URL is checked... need a mechanism to block and wait!
 		go checkLink(link, c)
 	}
 
-	fmt.Println(<-c)
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-c)
+	}
 }
 
 // checkLink checks each URL and see if it is responding to traffic or not
