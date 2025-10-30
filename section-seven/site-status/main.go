@@ -15,9 +15,8 @@ func main() {
 	}
 
 	for _, link := range links {
-		checkLink(link)
+		go checkLink(link) // Program will terminate and not wait
 	}
-
 }
 
 // checkLink checks each URL and see if it is responding to traffic or not
